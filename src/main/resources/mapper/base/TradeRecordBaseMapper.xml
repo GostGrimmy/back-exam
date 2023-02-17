@@ -1,0 +1,881 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ggstream.mapper.base.TradeRecordBaseMapper">
+
+
+    <insert id="insertTradeRecord"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `trade_Record`
+        (
+        <trim suffixOverrides=",">
+                    <if test="id!=null">
+                        `id`,
+                    </if>
+                    <if test="type!=null">
+                        `type`,
+                    </if>
+                    <if test="tradeAmount!=null">
+                        `trade_amount`,
+                    </if>
+                    <if test="userCode!=null">
+                        `User_Code`,
+                    </if>
+                    <if test="createTime!=null">
+                        `create_Time`,
+                    </if>
+                    <if test="recodeCode!=null">
+                        `recode_Code`,
+                    </if>
+                    <if test="status!=null">
+                        `status`,
+                    </if>
+                    <if test="tradeBefore!=null">
+                        `trade_before`,
+                    </if>
+                    <if test="tradeAfter!=null">
+                        `trade_after`,
+                    </if>
+                    <if test="walletCode!=null">
+                        `wallet_code`,
+                    </if>
+                    <if test="walletTo!=null">
+                        `wallet_to`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="id!=null">
+                    #{id},
+                </if>
+                <if test="type!=null">
+                    #{type},
+                </if>
+                <if test="tradeAmount!=null">
+                    #{tradeAmount},
+                </if>
+                <if test="userCode!=null">
+                    #{userCode},
+                </if>
+                <if test="createTime!=null">
+                    #{createTime},
+                </if>
+                <if test="recodeCode!=null">
+                    #{recodeCode},
+                </if>
+                <if test="status!=null">
+                    #{status},
+                </if>
+                <if test="tradeBefore!=null">
+                    #{tradeBefore},
+                </if>
+                <if test="tradeAfter!=null">
+                    #{tradeAfter},
+                </if>
+                <if test="walletCode!=null">
+                    #{walletCode},
+                </if>
+                <if test="walletTo!=null">
+                    #{walletTo},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updateTradeRecord">
+        UPDATE `trade_Record`
+        SET
+        <trim suffixOverrides=",">
+            <if test="type != null">
+                `type` = #{type},
+            </if>
+            <if test="tradeAmount != null">
+                `trade_amount` = #{tradeAmount},
+            </if>
+            <if test="userCode != null and userCode!=''">
+                `User_Code` = #{userCode},
+            </if>
+            <if test="createTime != null">
+                `create_Time` = #{createTime},
+            </if>
+            <if test="recodeCode != null and recodeCode!=''">
+                `recode_Code` = #{recodeCode},
+            </if>
+            <if test="status != null">
+                `status` = #{status},
+            </if>
+            <if test="tradeBefore != null">
+                `trade_before` = #{tradeBefore},
+            </if>
+            <if test="tradeAfter != null">
+                `trade_after` = #{tradeAfter},
+            </if>
+            <if test="walletCode != null and walletCode!=''">
+                `wallet_code` = #{walletCode},
+            </if>
+            <if test="walletTo != null and walletTo!=''">
+                `wallet_to` = #{walletTo},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `id` = #{id} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `trade_Record`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.type != null">
+            `type` = #{set.type},
+        </if>
+        <if test="set.tradeAmount != null">
+            `trade_amount` = #{set.tradeAmount},
+        </if>
+        <if test="set.userCode != null and set.userCode!=''">
+            `User_Code` = #{set.userCode},
+        </if>
+        <if test="set.createTime != null">
+            `create_Time` = #{set.createTime},
+        </if>
+        <if test="set.recodeCode != null and set.recodeCode!=''">
+            `recode_Code` = #{set.recodeCode},
+        </if>
+        <if test="set.status != null">
+            `status` = #{set.status},
+        </if>
+        <if test="set.tradeBefore != null">
+            `trade_before` = #{set.tradeBefore},
+        </if>
+        <if test="set.tradeAfter != null">
+            `trade_after` = #{set.tradeAfter},
+        </if>
+        <if test="set.walletCode != null and set.walletCode!=''">
+            `wallet_code` = #{set.walletCode},
+        </if>
+        <if test="set.walletTo != null and set.walletTo!=''">
+            `wallet_to` = #{set.walletTo},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.idList != null">
+                    `id` in
+                    <foreach collection="where.idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.idSt !=null">
+                `id` >= #{where.idSt} and
+            </if>
+            <if test="where.idEd!=null">
+                `id` &lt;= #{where.idEd} and
+            </if>
+                <if test="where.typeList != null">
+                    `type` in
+                    <foreach collection="where.typeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.typeSt !=null">
+                `type` >= #{where.typeSt} and
+            </if>
+            <if test="where.typeEd!=null">
+                `type` &lt;= #{where.typeEd} and
+            </if>
+                <if test="where.tradeAmountList != null">
+                    `trade_amount` in
+                    <foreach collection="where.tradeAmountList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.tradeAmountSt !=null">
+                `trade_amount` >= #{where.tradeAmountSt} and
+            </if>
+            <if test="where.tradeAmountEd!=null">
+                `trade_amount` &lt;= #{where.tradeAmountEd} and
+            </if>
+                <if test="where.userCodeList != null">
+                    `User_Code` in
+                    <foreach collection="where.userCodeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyUserCode!=null and where.fuzzyUserCode.size()>0">
+                (
+                <foreach collection="where.fuzzyUserCode"  separator="or" item="item">
+                    `User_Code` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyUserCode!=null and where.rightFuzzyUserCode.size()>0">
+                (
+                <foreach collection="where.rightFuzzyUserCode"  separator="or" item="item">
+                    `User_Code` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.createTimeList != null">
+                    `create_Time` in
+                    <foreach collection="where.createTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.createTimeSt !=null">
+                `create_Time` >= #{where.createTimeSt} and
+            </if>
+            <if test="where.createTimeEd!=null">
+                `create_Time` &lt;= #{where.createTimeEd} and
+            </if>
+                <if test="where.recodeCodeList != null">
+                    `recode_Code` in
+                    <foreach collection="where.recodeCodeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyRecodeCode!=null and where.fuzzyRecodeCode.size()>0">
+                (
+                <foreach collection="where.fuzzyRecodeCode"  separator="or" item="item">
+                    `Recode_Code` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyRecodeCode!=null and where.rightFuzzyRecodeCode.size()>0">
+                (
+                <foreach collection="where.rightFuzzyRecodeCode"  separator="or" item="item">
+                    `Recode_Code` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.statusList != null">
+                    `status` in
+                    <foreach collection="where.statusList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.statusSt !=null">
+                `status` >= #{where.statusSt} and
+            </if>
+            <if test="where.statusEd!=null">
+                `status` &lt;= #{where.statusEd} and
+            </if>
+                <if test="where.tradeBeforeList != null">
+                    `trade_before` in
+                    <foreach collection="where.tradeBeforeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.tradeBeforeSt !=null">
+                `trade_before` >= #{where.tradeBeforeSt} and
+            </if>
+            <if test="where.tradeBeforeEd!=null">
+                `trade_before` &lt;= #{where.tradeBeforeEd} and
+            </if>
+                <if test="where.tradeAfterList != null">
+                    `trade_after` in
+                    <foreach collection="where.tradeAfterList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.tradeAfterSt !=null">
+                `trade_after` >= #{where.tradeAfterSt} and
+            </if>
+            <if test="where.tradeAfterEd!=null">
+                `trade_after` &lt;= #{where.tradeAfterEd} and
+            </if>
+                <if test="where.walletCodeList != null">
+                    `wallet_code` in
+                    <foreach collection="where.walletCodeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyWalletCode!=null and where.fuzzyWalletCode.size()>0">
+                (
+                <foreach collection="where.fuzzyWalletCode"  separator="or" item="item">
+                    `Wallet_code` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyWalletCode!=null and where.rightFuzzyWalletCode.size()>0">
+                (
+                <foreach collection="where.rightFuzzyWalletCode"  separator="or" item="item">
+                    `Wallet_code` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.walletToList != null">
+                    `wallet_to` in
+                    <foreach collection="where.walletToList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyWalletTo!=null and where.fuzzyWalletTo.size()>0">
+                (
+                <foreach collection="where.fuzzyWalletTo"  separator="or" item="item">
+                    `Wallet_to` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyWalletTo!=null and where.rightFuzzyWalletTo.size()>0">
+                (
+                <foreach collection="where.rightFuzzyWalletTo"  separator="or" item="item">
+                    `Wallet_to` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="com.ggstream.entity.TradeRecord" id="TradeRecordMap">
+        <result property="id" column="id"/>
+        <result property="type" column="type"/>
+        <result property="tradeAmount" column="trade_amount"/>
+        <result property="userCode" column="User_Code"/>
+        <result property="createTime" column="create_Time"/>
+        <result property="recodeCode" column="recode_Code"/>
+        <result property="status" column="status"/>
+        <result property="tradeBefore" column="trade_before"/>
+        <result property="tradeAfter" column="trade_after"/>
+        <result property="walletCode" column="wallet_code"/>
+        <result property="walletTo" column="wallet_to"/>
+    </resultMap>
+
+
+    <select id="queryTradeRecord" resultMap="TradeRecordMap">
+        select
+        <include refid="baseResult"></include>
+        from  `trade_Record`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="type != null">
+                `type` = #{type} and
+            </if>
+            <if test="tradeAmount != null">
+                `trade_amount` = #{tradeAmount} and
+            </if>
+            <if test="userCode != null and userCode!=''">
+                `User_Code` = #{userCode} and
+            </if>
+            <if test="createTime != null">
+                `create_Time` = #{createTime} and
+            </if>
+            <if test="recodeCode != null and recodeCode!=''">
+                `recode_Code` = #{recodeCode} and
+            </if>
+            <if test="status != null">
+                `status` = #{status} and
+            </if>
+            <if test="tradeBefore != null">
+                `trade_before` = #{tradeBefore} and
+            </if>
+            <if test="tradeAfter != null">
+                `trade_after` = #{tradeAfter} and
+            </if>
+            <if test="walletCode != null and walletCode!=''">
+                `wallet_code` = #{walletCode} and
+            </if>
+            <if test="walletTo != null and walletTo!=''">
+                `wallet_to` = #{walletTo} and
+            </if>
+            <if test = "(_parameter instanceof com.ggstream.entity.TradeRecord$QueryBuilder) == true">
+                <if test="idList != null">
+                    `id` in
+                    <foreach collection="idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                <if test="typeList != null">
+                    `type` in
+                    <foreach collection="typeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="typeSt !=null">
+                    `type` >= #{typeSt} and
+                </if>
+                <if test="typeEd!=null">
+                    `type` &lt;= #{typeEd} and
+                </if>
+                <if test="tradeAmountList != null">
+                    `trade_amount` in
+                    <foreach collection="tradeAmountList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="tradeAmountSt !=null">
+                    `trade_amount` >= #{tradeAmountSt} and
+                </if>
+                <if test="tradeAmountEd!=null">
+                    `trade_amount` &lt;= #{tradeAmountEd} and
+                </if>
+                <if test="userCodeList != null">
+                    `User_Code` in
+                    <foreach collection="userCodeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyUserCode!=null and fuzzyUserCode.size()>0">
+                    (
+                    <foreach collection="fuzzyUserCode"  separator="or" item="item">
+                        `User_Code` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyUserCode!=null and rightFuzzyUserCode.size()>0">
+                    (
+                    <foreach collection="rightFuzzyUserCode"  separator="or" item="item">
+                        `User_Code` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="createTimeList != null">
+                    `create_Time` in
+                    <foreach collection="createTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="createTimeSt !=null">
+                    `create_Time` >= #{createTimeSt} and
+                </if>
+                <if test="createTimeEd!=null">
+                    `create_Time` &lt;= #{createTimeEd} and
+                </if>
+                <if test="recodeCodeList != null">
+                    `recode_Code` in
+                    <foreach collection="recodeCodeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyRecodeCode!=null and fuzzyRecodeCode.size()>0">
+                    (
+                    <foreach collection="fuzzyRecodeCode"  separator="or" item="item">
+                        `Recode_Code` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRecodeCode!=null and rightFuzzyRecodeCode.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRecodeCode"  separator="or" item="item">
+                        `Recode_Code` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="statusList != null">
+                    `status` in
+                    <foreach collection="statusList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="statusSt !=null">
+                    `status` >= #{statusSt} and
+                </if>
+                <if test="statusEd!=null">
+                    `status` &lt;= #{statusEd} and
+                </if>
+                <if test="tradeBeforeList != null">
+                    `trade_before` in
+                    <foreach collection="tradeBeforeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="tradeBeforeSt !=null">
+                    `trade_before` >= #{tradeBeforeSt} and
+                </if>
+                <if test="tradeBeforeEd!=null">
+                    `trade_before` &lt;= #{tradeBeforeEd} and
+                </if>
+                <if test="tradeAfterList != null">
+                    `trade_after` in
+                    <foreach collection="tradeAfterList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="tradeAfterSt !=null">
+                    `trade_after` >= #{tradeAfterSt} and
+                </if>
+                <if test="tradeAfterEd!=null">
+                    `trade_after` &lt;= #{tradeAfterEd} and
+                </if>
+                <if test="walletCodeList != null">
+                    `wallet_code` in
+                    <foreach collection="walletCodeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyWalletCode!=null and fuzzyWalletCode.size()>0">
+                    (
+                    <foreach collection="fuzzyWalletCode"  separator="or" item="item">
+                        `Wallet_code` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyWalletCode!=null and rightFuzzyWalletCode.size()>0">
+                    (
+                    <foreach collection="rightFuzzyWalletCode"  separator="or" item="item">
+                        `Wallet_code` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="walletToList != null">
+                    `wallet_to` in
+                    <foreach collection="walletToList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyWalletTo!=null and fuzzyWalletTo.size()>0">
+                    (
+                    <foreach collection="fuzzyWalletTo"  separator="or" item="item">
+                        `Wallet_to` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyWalletTo!=null and rightFuzzyWalletTo.size()>0">
+                    (
+                    <foreach collection="rightFuzzyWalletTo"  separator="or" item="item">
+                        `Wallet_to` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryTradeRecordLimit1" resultMap="TradeRecordMap">
+        select
+        <include refid="baseResult"></include>
+        from  `trade_Record`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="type != null">
+                `type` = #{type} and
+            </if>
+            <if test="tradeAmount != null">
+                `trade_amount` = #{tradeAmount} and
+            </if>
+            <if test="userCode != null and userCode!=''">
+                `User_Code` = #{userCode} and
+            </if>
+            <if test="createTime != null">
+                `create_Time` = #{createTime} and
+            </if>
+            <if test="recodeCode != null and recodeCode!=''">
+                `recode_Code` = #{recodeCode} and
+            </if>
+            <if test="status != null">
+                `status` = #{status} and
+            </if>
+            <if test="tradeBefore != null">
+                `trade_before` = #{tradeBefore} and
+            </if>
+            <if test="tradeAfter != null">
+                `trade_after` = #{tradeAfter} and
+            </if>
+            <if test="walletCode != null and walletCode!=''">
+                `wallet_code` = #{walletCode} and
+            </if>
+            <if test="walletTo != null and walletTo!=''">
+                `wallet_to` = #{walletTo} and
+            </if>
+            <if test = "(_parameter instanceof com.ggstream.entity.TradeRecord$QueryBuilder) == true">
+                    <if test="idList != null">
+                        `id` in
+                        <foreach collection="idList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                    <if test="typeList != null">
+                        `type` in
+                        <foreach collection="typeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="typeSt !=null">
+                    `type` >= #{typeSt} and
+                </if>
+                <if test="typeEd!=null">
+                    `type` &lt;= #{typeEd} and
+                </if>
+                    <if test="tradeAmountList != null">
+                        `trade_amount` in
+                        <foreach collection="tradeAmountList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="tradeAmountSt !=null">
+                    `trade_amount` >= #{tradeAmountSt} and
+                </if>
+                <if test="tradeAmountEd!=null">
+                    `trade_amount` &lt;= #{tradeAmountEd} and
+                </if>
+                    <if test="userCodeList != null">
+                        `User_Code` in
+                        <foreach collection="userCodeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyUserCode!=null and fuzzyUserCode.size()>0">
+                    (
+                    <foreach collection="fuzzyUserCode"  separator="or" item="item">
+                        `User_Code` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyUserCode!=null and rightFuzzyUserCode.size()>0">
+                    (
+                    <foreach collection="rightFuzzyUserCode"  separator="or" item="item">
+                        `User_Code` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="createTimeList != null">
+                        `create_Time` in
+                        <foreach collection="createTimeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="createTimeSt !=null">
+                    `create_Time` >= #{createTimeSt} and
+                </if>
+                <if test="createTimeEd!=null">
+                    `create_Time` &lt;= #{createTimeEd} and
+                </if>
+                    <if test="recodeCodeList != null">
+                        `recode_Code` in
+                        <foreach collection="recodeCodeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyRecodeCode!=null and fuzzyRecodeCode.size()>0">
+                    (
+                    <foreach collection="fuzzyRecodeCode"  separator="or" item="item">
+                        `Recode_Code` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRecodeCode!=null and rightFuzzyRecodeCode.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRecodeCode"  separator="or" item="item">
+                        `Recode_Code` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="statusList != null">
+                        `status` in
+                        <foreach collection="statusList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="statusSt !=null">
+                    `status` >= #{statusSt} and
+                </if>
+                <if test="statusEd!=null">
+                    `status` &lt;= #{statusEd} and
+                </if>
+                    <if test="tradeBeforeList != null">
+                        `trade_before` in
+                        <foreach collection="tradeBeforeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="tradeBeforeSt !=null">
+                    `trade_before` >= #{tradeBeforeSt} and
+                </if>
+                <if test="tradeBeforeEd!=null">
+                    `trade_before` &lt;= #{tradeBeforeEd} and
+                </if>
+                    <if test="tradeAfterList != null">
+                        `trade_after` in
+                        <foreach collection="tradeAfterList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="tradeAfterSt !=null">
+                    `trade_after` >= #{tradeAfterSt} and
+                </if>
+                <if test="tradeAfterEd!=null">
+                    `trade_after` &lt;= #{tradeAfterEd} and
+                </if>
+                    <if test="walletCodeList != null">
+                        `wallet_code` in
+                        <foreach collection="walletCodeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyWalletCode!=null and fuzzyWalletCode.size()>0">
+                    (
+                    <foreach collection="fuzzyWalletCode"  separator="or" item="item">
+                        `Wallet_code` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyWalletCode!=null and rightFuzzyWalletCode.size()>0">
+                    (
+                    <foreach collection="rightFuzzyWalletCode"  separator="or" item="item">
+                        `Wallet_code` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="walletToList != null">
+                        `wallet_to` in
+                        <foreach collection="walletToList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyWalletTo!=null and fuzzyWalletTo.size()>0">
+                    (
+                    <foreach collection="fuzzyWalletTo"  separator="or" item="item">
+                        `Wallet_to` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyWalletTo!=null and rightFuzzyWalletTo.size()>0">
+                    (
+                    <foreach collection="rightFuzzyWalletTo"  separator="or" item="item">
+                        `Wallet_to` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `id`,
+        `type`,
+        `trade_amount`,
+        `User_Code`,
+        `create_Time`,
+        `recode_Code`,
+        `status`,
+        `trade_before`,
+        `trade_after`,
+        `wallet_code`,
+        `wallet_to`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof com.ggstream.entity.TradeRecord$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.id==true">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.type==true">
+                        `type`,
+                    </if>
+                    <if test="fetchFields.fetchFields.tradeAmount==true">
+                        `trade_amount`,
+                    </if>
+                    <if test="fetchFields.fetchFields.userCode==true">
+                        `User_Code`,
+                    </if>
+                    <if test="fetchFields.fetchFields.createTime==true">
+                        `create_Time`,
+                    </if>
+                    <if test="fetchFields.fetchFields.recodeCode==true">
+                        `recode_Code`,
+                    </if>
+                    <if test="fetchFields.fetchFields.status==true">
+                        `status`,
+                    </if>
+                    <if test="fetchFields.fetchFields.tradeBefore==true">
+                        `trade_before`,
+                    </if>
+                    <if test="fetchFields.fetchFields.tradeAfter==true">
+                        `trade_after`,
+                    </if>
+                    <if test="fetchFields.fetchFields.walletCode==true">
+                        `wallet_code`,
+                    </if>
+                    <if test="fetchFields.fetchFields.walletTo==true">
+                        `wallet_to`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.id==null">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.type==null">
+                        `type`,
+                    </if>
+                    <if test="fetchFields.excludeFields.tradeAmount==null">
+                        `trade_amount`,
+                    </if>
+                    <if test="fetchFields.excludeFields.userCode==null">
+                        `User_Code`,
+                    </if>
+                    <if test="fetchFields.excludeFields.createTime==null">
+                        `create_Time`,
+                    </if>
+                    <if test="fetchFields.excludeFields.recodeCode==null">
+                        `recode_Code`,
+                    </if>
+                    <if test="fetchFields.excludeFields.status==null">
+                        `status`,
+                    </if>
+                    <if test="fetchFields.excludeFields.tradeBefore==null">
+                        `trade_before`,
+                    </if>
+                    <if test="fetchFields.excludeFields.tradeAfter==null">
+                        `trade_after`,
+                    </if>
+                    <if test="fetchFields.excludeFields.walletCode==null">
+                        `wallet_code`,
+                    </if>
+                    <if test="fetchFields.excludeFields.walletTo==null">
+                        `wallet_to`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof com.ggstream.entity.TradeRecord$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>
